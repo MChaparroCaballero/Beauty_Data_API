@@ -34,8 +34,8 @@ USE beauty_data;
 
 CREATE TABLE IF NOT EXISTS `productos` (
   `cod` int(11) NOT NULL,
-  `nombre` varchar(200) DEFAULT NULL,
-  `categoria` varchar(200) DEFAULT NULL,
+  `nombre` varchar(200) NOT NULL,
+  `categoria` varchar(200) NOT NULL,
   `descripcion` varchar(200) DEFAULT NULL,
   `precio_de_compra` decimal(10,2) DEFAULT 0.00,
   `precio_de_venta` decimal(10,2) DEFAULT 0.00,
@@ -79,5 +79,6 @@ VALUES
 ('Máscara de Pestañas Volumen Extremo', 'Ojos', 'Resistente al agua, color negro profundo.', 5.75, 10.50, 0, 'Distribuidora Estilo', 'Agotado'),
 
 ('Paleta de Sombras Nude', 'Ojos', '12 tonos neutros entre mates y brillantes.', 12.00, 25.00, 15, 'Cosméticos Global S.A.', 'Activo'),
+
 
 ('Corrector de Ojeras Light', 'Rostro', 'Cobertura completa con hidratación.', 3.90, 8.50, 25, 'Beauty Supply Co.', 'Activo');
