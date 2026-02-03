@@ -18,18 +18,16 @@ app = FastAPI(
 
 class ProductoBase(BaseModel):
     """Modelo base con validaciones compartidas para Producto."""
-    nombre: Annotated[str, Field(min_length=1, max_length=80)]
-    categoria: Annotated[str, Field(min_length=1, max_length=50)]
-    descripcion: Optional[Annotated[str, Field(max_length=255)]] = None
+    nombre: Annotated[str, Field(min_length=1, max_length=200)]
+    categoria: Annotated[str, Field(min_length=1, max_length=200)]
+    descripcion: Optional[Annotated[str, Field(max_length=200)]] = None
     precio_de_compra: float = Field(ge=0)
     precio_de_venta: float = Field(ge=0)
     stock: int = Field(ge=0)
-    proveedor: Annotated[str, Field(min_length=1, max_length=100)]
-    estado: str = Field(default="Activo")
+    proveedor: Optional[Annotated[str, Field(min_length=1, max_length=200)]] = None
+    estado: str = Field(default="Activo", max_length=20)
 
-
-
-    @field_validator('nombre', 'categoria', 'proveedor')
+    @field_validator('nombre', 'categoria')
     @classmethod
     def validar_nombre_categoria(cls, v: str) -> str:
         """Valida nombre y categoría."""
@@ -38,10 +36,10 @@ class ProductoBase(BaseModel):
         return v.strip()
 
 
-    @field_validator('descripcion')
+    @field_validator('descripcion','proveedor')
     @classmethod
     def validar_descripcion(cls, v: Optional[str]) -> Optional[str]:
-        """Valida descripción."""
+        """Valido descripción."""
         if v is None or v.strip() == '':
             return None
         return v.strip()
@@ -294,4 +292,5 @@ def eliminar_producto(producto_id: int):
     return {
         "mensaje": "Producto eliminado exitosamente",
         "id_producto": producto_id
+
     }
