@@ -20,14 +20,14 @@ class ProductoBase(BaseModel):
     """Modelo base con validaciones compartidas para Producto."""
     nombre: Annotated[str, Field(min_length=1, max_length=200)]
     categoria: Annotated[str, Field(min_length=1, max_length=200)]
-    descripcion: Optional[Annotated[str, Field(max_length=200)]] = None
-    precio_de_compra: float = Field(ge=0)
-    precio_de_venta: float = Field(ge=0)
-    stock: int = Field(ge=0)
-    proveedor: Optional[Annotated[str, Field(min_length=1, max_length=200)]] = None
+    descripcion: Annotated[str, Field(max_length=200)]
+    precio_de_compra: float = Field(default=0.00,ge=0)
+    precio_de_venta: float = Field(default=0.00,ge=0)
+    stock: int = Field(default=0,ge=0)
+    proveedor: Annotated[str, Field(min_length=1, max_length=200)]
     estado: str = Field(default="Activo", max_length=20)
 
-    @field_validator('nombre', 'categoria')
+    @field_validator('nombre', 'categoria', 'descripcion', 'proveedor', 'estado')
     @classmethod
     def validar_nombre_categoria(cls, v: str) -> str:
         """Valida nombre y categoría."""
@@ -36,21 +36,12 @@ class ProductoBase(BaseModel):
         return v.strip()
 
 
-    @field_validator('descripcion','proveedor')
-    @classmethod
-    def validar_descripcion(cls, v: Optional[str]) -> Optional[str]:
-        """Valido descripción."""
-        if v is None or v.strip() == '':
-            return None
-        return v.strip()
-
-
 class ProductoDB(BaseModel):
     """Modelo para lectura desde BD (sin validaciones estrictas para datos históricos)."""
     cod: int
     nombre: str
     categoria: str
-    descripcion: Optional[str] = None
+    descripcion: str
     precio_de_compra: float
     precio_de_venta: float
     stock: int
@@ -294,3 +285,4 @@ def eliminar_producto(producto_id: int):
         "id_producto": producto_id
 
     }
+
