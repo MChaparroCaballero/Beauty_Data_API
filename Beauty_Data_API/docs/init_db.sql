@@ -36,12 +36,12 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `cod` int(11) NOT NULL,
   `nombre` varchar(200) NOT NULL,
   `categoria` varchar(200) NOT NULL,
-  `descripcion` varchar(200) DEFAULT NULL,
-  `precio_de_compra` decimal(10,2) DEFAULT 0.00,
-  `precio_de_venta` decimal(10,2) DEFAULT 0.00,
-  `stock` int(11) DEFAULT 0,
-  `proveedor` varchar(200) DEFAULT NULL,
-  `estado` varchar(20) DEFAULT 'Activo'
+  `descripcion` varchar(200) NOT NULL,
+  `precio_de_compra` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `precio_de_venta` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `stock` int(11) NOT NULL DEFAULT 0,
+  `proveedor` varchar(200) NOT NULL,
+  `estado` varchar(20) NOT NULL DEFAULT 'Activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -79,6 +79,5 @@ VALUES
 ('Máscara de Pestañas Volumen Extremo', 'Ojos', 'Resistente al agua, color negro profundo.', 5.75, 10.50, 0, 'Distribuidora Estilo', 'Agotado'),
 
 ('Paleta de Sombras Nude', 'Ojos', '12 tonos neutros entre mates y brillantes.', 12.00, 25.00, 15, 'Cosméticos Global S.A.', 'Activo'),
-
 
 ('Corrector de Ojeras Light', 'Rostro', 'Cobertura completa con hidratación.', 3.90, 8.50, 25, 'Beauty Supply Co.', 'Activo');
