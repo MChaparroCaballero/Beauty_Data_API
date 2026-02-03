@@ -64,7 +64,7 @@ def fetch_all_productos() -> List[Dict[str, Any]]:
 def insert_producto(
     nombre: str,
     categoria: str,
-    descripcion: str | None,
+    descripcion: str,
     precio_de_compra: float,
     precio_de_venta: float,
     stock: int,
@@ -174,7 +174,7 @@ def update_producto(
     cod: int,
     nombre: str,
     categoria: str,
-    descripcion: str | None,
+    descripcion: str,
     precio_de_compra: float,
     precio_de_venta: float,
     stock: int,
