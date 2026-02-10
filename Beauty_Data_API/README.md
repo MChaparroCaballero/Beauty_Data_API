@@ -16,10 +16,8 @@ En 2026, la empresa decidió implementar esta **API REST** para centralizar la i
 
 ## 🎯 2. El Problema a Resolver
 El sistema permite la gestión integral del ciclo de vida de los productos:
-* **Registro centralizado:** Evitar duplicidad de productos y marcas.
 * **Control financiero:** Seguimiento de `precio_de_compra` y `precio_de_venta`.
 * **Gestión de stock:** Actualización en tiempo real de unidades disponibles.
-* **Segmentación:** Clasificación por categorías y proveedores.
 
 ---
 
@@ -140,3 +138,4 @@ El desarrollo sigue buenas prácticas de ingeniería de software para facilitar 
 * **Repository Pattern:** Todas las consultas y sentencias SQL están centralizadas en `database.py`, aislando la lógica de datos de las rutas.
 * **Data Transfer Object (DTO):** Uso de modelos de **Pydantic** para definir exactamente qué datos entran y salen de la API, protegiendo la estructura interna de la base de datos.
 * **Inyección de Dependencias:** Se utiliza el sistema nativo de FastAPI para gestionar de forma eficiente la conexión a la base de datos y las dependencias de los modelos.
+
